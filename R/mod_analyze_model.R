@@ -525,7 +525,7 @@ mod_analyze_model_server <- function(id, global){
                 title = paste0(model$id, "_title"),
                 button = paste0(model$id, "_button")
               )
-              print(model$IDs)
+
               # create new tab
               tab_header <- tagList(
                 textOutput(
@@ -539,7 +539,7 @@ mod_analyze_model_server <- function(id, global){
                   class = "btn-xs remove_model"
                 )
               )
-
+              print(names(global$models))
               appendTab("navbar_model",
                 select = TRUE,
                 tabPanel(title = tab_header,
@@ -617,6 +617,7 @@ mod_analyze_model_server <- function(id, global){
                 # remove model object and tab
                 global$models[[model_name]] <- NULL
                 removeTab("navbar_model", model$IDs$tab, session)
+                print(1234)
                 print(names(global$models))
                 # re-index model objects and tabs
                 names(global$models) <- if(length(global$models) > 0) paste0("Model ", 1:length(global$models)) else character()
@@ -627,7 +628,8 @@ mod_analyze_model_server <- function(id, global){
 
 
               global$models[[model_name]] <- model
-              print(length(global$models))
+              print(123)
+              print(names(global$models))
               waiter::waiter_hide()
 
             } else {

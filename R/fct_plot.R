@@ -8,7 +8,6 @@
 #'
 #' @import dplyr
 #' @import ggplot2
-#' @import plotly
 plot_individual <- function(
     brms_input,
     pstrat_data,
@@ -149,8 +148,8 @@ map_sample_size <- function(
     font = fontstyle
   )
 
-  fig <- plot_ly() |>
-    add_trace(
+  fig <- plotly::plot_ly() |>
+    plotly::add_trace(
       type = "choropleth",
       geojson = map_geojson,
       locations = plot_df$fips,
@@ -162,14 +161,14 @@ map_sample_size <- function(
       text = plot_df$hover,
       hoverinfo = "text"
     ) |>
-    layout(
+    plotly::layout(
       geo = g,
       title = "Map of County Sample Size"
     ) |>
-    style(
+    plotly::style(
       hoverlabel = label
     ) |>
-    colorbar(
+    plotly::colorbar(
       title = "Sample\nSize"
     ) |>
     plotly::config(
@@ -353,8 +352,8 @@ map_prev <- function(
     font = fontstyle
   )
 
-  fig <- plot_ly() |>
-    add_trace(
+  fig <- plotly::plot_ly() |>
+    plotly::add_trace(
       type = "choropleth",
       geojson = map_geojson,
       locations = plot_df$fips,
@@ -366,14 +365,14 @@ map_prev <- function(
       text = plot_df$hover,
       hoverinfo = "text"
     ) |>
-    layout(
+    plotly::layout(
       geo = g,
       title = "Raw Prevalence Across Weeks"
     ) |>
-    style(
+    plotly::style(
       hoverlabel = label
     ) |>
-    colorbar(
+    plotly::colorbar(
       title = "Highest\nWeekly\nPrevalence"
     ) |>
     plotly::config(
@@ -596,10 +595,10 @@ map_estimate <- function(df, fips_county_state, map_geojson, dates) {
     font = fontstyle
   )
 
-  fig <- plot_ly(
+  fig <- plotly::plot_ly(
     frame = plot_df$time
   ) |>
-    add_trace(
+    plotly::add_trace(
       type = "choropleth",
       geojson = map_geojson,
       locations = plot_df$fips,
@@ -611,14 +610,14 @@ map_estimate <- function(df, fips_county_state, map_geojson, dates) {
       text = plot_df$hover,
       hoverinfo = "text"
     ) |>
-    layout(
+    plotly::layout(
       geo = g,
       title = "MRP-estimated Prevalence"
     ) |>
-    style(
+    plotly::style(
       hoverlabel = label
     ) |>
-    colorbar(
+    plotly::colorbar(
       title = "Prevalence"
     ) |>
     plotly::config(

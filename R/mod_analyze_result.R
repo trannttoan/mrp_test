@@ -203,21 +203,12 @@ mod_analyze_result_server <- function(id, global){
     output$est_county_map <- plotly::renderPlotly({
       req(names(global$models))
 
-      waiter::waiter_show(
-        id = ns("est_county_map"),
-        html = waiter_ui("map")
-      )
-
-      p <- map_estimate(
+      map_estimate(
         global$models[[input$model_select]]$county,
         global$extdata$fips,
         global$plotdata$geojson,
         global$plotdata$dates
       )
-
-      waiter::waiter_hide()
-
-      return(p)
     })
 
 
